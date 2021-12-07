@@ -6,10 +6,10 @@ import com.amb.bcomment.paging.BCommentPagingDTO;
 
 public interface BCommentService {
 	//게시물에 대한 댓글목록 조회
-	public BCommentPagingCreatorDTO selectCnoListTotalByBno(BCommentPagingDTO bcommentPaging);
+	public BCommentPagingCreatorDTO selectCnoListByBno(BCommentPagingDTO bCommentPaging);
 	
 	//게시물에 대한 댓글 갯수 확인
-	public long selectCnoTotalByBno(BCommentPagingDTO bcommentPaging);
+	public long selectCnoTotalByBno(BCommentPagingDTO bCommentPaging);
 	
 	//게시물에 대한 댓글 등록
 	public long registerCnoForBoard(BCommentVO bcommentVO);

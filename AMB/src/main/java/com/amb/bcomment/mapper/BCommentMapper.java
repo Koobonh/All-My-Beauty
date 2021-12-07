@@ -28,10 +28,10 @@ public interface BCommentMapper {
 	public int deleteBComment(@Param("bno") Long bno, @Param("cno") Long cno);
 	
 	//특정 게시물에 대한 전체 댓글 조회
-	public List<BCommentVO> selectCnoList(@Param("bcommentPagingDTO") BCommentPagingDTO bcommentPagingDTO);
+	public List<BCommentVO> selectCnoList(@Param("bCommentPagingDTO") BCommentPagingDTO bCommentPagingDTO);
 	
 	//특정 게시물에 대한 총 댓글 갯수 조회
-	public int selectCnoTotalByBno(@Param("bcommentPagingDTO") BCommentPagingDTO bcommentPagingDTO);
+	public int selectCnoTotalByBno(@Param("bCommentPagingDTO") BCommentPagingDTO bCommentPagingDTO);
 
 	
 	

@@ -58,8 +58,7 @@ public class MyReplyController {
 				
 	//테스트: 톰캣 기동 후 
     //브라우저에서 
-				
-	//게시물에 대한 댓글 등록 : rno 반환			
+						
 	@PostMapping(value = "/{bno}/new",
 				 consumes = {"application/json; charset=UTF-8"},
 				 produces = {"text/plain; charset=UTF-8" })	

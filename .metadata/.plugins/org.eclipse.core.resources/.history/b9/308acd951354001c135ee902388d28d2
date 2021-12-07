@@ -1,7 +1,0 @@
-package com.amb.bcomment.service;
-
-@Service
-@Log4j
-public class BCommentServiceImpl {
-	
-}

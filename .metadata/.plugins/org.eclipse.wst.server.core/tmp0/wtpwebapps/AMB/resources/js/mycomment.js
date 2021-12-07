@@ -9,12 +9,8 @@ var myCommentClsr = ( function(){
 		var bno = pagingParams.bno;
 		var page = pagingParams.page || 1;
 		
-		console.log("getCmtList가 전달받은bno: " + bno);
-		console.log("getCmtList가 전달받은page: " + page);
-		console.log("getCmtList()함수의 ajax 처리 시작........");
-		
 		$.ajax({	type: 'get',
-					url: "AMB/replies/pages/" + bno + "/" + page,
+					url: "/mypro/replies/pages/" + bno + "/" + page,
 					dataType: 'json',
 					success : function(bCommentPagingCreator, status, xhr){
 							   if(callback){
@@ -32,13 +28,13 @@ var myCommentClsr = ( function(){
 				
 	}//getCmtList END
 	
-	function registerComment(comment, callback, error){
+	function registerCmt(comment, callback, error){
 		var bno = comment.bno;
 		console.log("registerCmt()에 전달된 bno: " + bno);
 		console.log("registerCmt() 함수의 comment등록 ajax 처리 시작...........");
 		
 		$.ajax({ type:"post",
-				 url: "/AMB/replies/" + bno + "/new",
+				 url: "/mypro/replies/" + bno + "/new",
 				 data: JSON.stringify(comment),
 				 contentType: "application/json; charset=utf-8",
 				 success : function(result, status, xhr){
@@ -64,7 +60,7 @@ var myCommentClsr = ( function(){
 		console.log("registerReply()함수의 댓글에 대한 답글 등록 .ajax 처리 시작...");
 		
 		$.ajax( { type: "post",
-				  url: "AMB/replies/"+ bno + "/" + creply + "/new",
+				  url: "/mypro/replies/"+ bno + "/" + creply + "/new",
 				  data: JSON.stringify(reply),
 				  contentType : "application/json; charset=utf-8",
 				  dataType: 'text',
@@ -91,7 +87,7 @@ var myCommentClsr = ( function(){
 		console.log("getCmtReply에서 전달받은 cno: " + cno);
 		console.log("getCmtReply에서 댓글 조회 .ajax 처리 시작.........");
 		
-		$.get("/AMB/replies/" + bno + "/" + cno + ".json",
+		$.get("/mypro/replies/" + bno + "/" + cno + ".json",
 			function(result){
 				if (callback){
 					callback(result);
@@ -112,7 +108,7 @@ var myCommentClsr = ( function(){
 		console.log("modifCmtReply() 함수의 특정 댓글 수정 ajax 처리 시작.....");
 		
 		$.ajax( {type: "put",
-				 url : "/AMB/replies/" + bno + "/" + cno,
+				 url : "/mypro/replies/" + bno + "/" + cno,
 				 data: JSON.stringify(comment),
 				 contentType: "application/json; charset=utf-8",
 				 dataType: "text",
@@ -140,7 +136,7 @@ var myCommentClsr = ( function(){
 		console.log("removeCmtReply() 함수의 댓글삭제 ajax시작... ");
 		
 		$.ajax( {type: "delete",
-				url: "AMB/replies" + bno + "/" + cno,
+				url: "/mypro/replies" + bno + "/" + cno,
 				data: JSON.stringify({bno: bno, cno: cno, rwriter: rwriter}),
 				contentType : "application/json; charset=utf-8",
 				success : function(removeResult, status, xhr){

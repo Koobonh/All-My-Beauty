@@ -20,15 +20,35 @@ public class BCommentServiceImpl implements BCommentService{
 	}
 	//특정 게시물에 대한 전체 댓글 조회
 	@Override
-	public BCommentPagingCreatorDTO selectCnoListTotalByBno(BCommentPagingDTO bcommentPaging) {
-		log.info("전달된 BCommentPagingDTO: "+ bcommentPaging);
-		BCommentPagingCreatorDTO bcommentPagingCreator =
-					new BCommentPagingCreatorDTO(
-						bcommentMapper.selectCnoTotalByBno(bcommentPaging),
-						bcommentPaging,
-						bcommentMapper.selectCnoList(bcommentPaging));
+	public BCommentPagingCreatorDTO selectCnoListByBno(BCommentPagingDTO bCommentPaging) {
+	
+		int cmtTotalByBno = bcommentMapper.selectCnoTotalByBno(bCommentPaging);
 		
-		return bcommentPagingCreator;
+		int pageNum = bCommentPaging.getPageNum();
+		
+		BCommentPagingCreatorDTO bCommentPagingCreator = null;
+		
+		if(cmtTotalByBno ==0) {
+			bCommentPaging.setPageNum(1);
+			log.info("댓글이 없는 경우, pageNum은  1:");
+			
+			bCommentPagingCreator = new BCommentPagingCreatorDTO(cmtTotalByBno, bCommentPaging, null);
+		}else {
+			if(pageNum == -1) {
+				pageNum = (int) Math.ceil(cmtTotalByBno/(bCommentPaging.getRowAmountPerPage()*1.0));
+				bCommentPaging.setPageNum(pageNum);
+				log.info("댓글추가후 :"+bCommentPaging);
+			}
+			
+			bCommentPagingCreator = new BCommentPagingCreatorDTO(
+										cmtTotalByBno,
+										bCommentPaging,
+										bcommentMapper.selectCnoList(bCommentPaging));
+			log.info("생성된 BCommentPagingCreatorDTO:"+bCommentPagingCreator);
+			log.info("bCommentPagingCreator가 컨트롤러로 전달됨");
+			
+		}
+		return bCommentPagingCreator;
 	}
 	//특정 게시물에 댓글 등록
 	@Override

@@ -1,7 +1,0 @@
-package com.amb.bcomment.controller;
-
-
-//@Controller
-public class BCommentController {
-	
-}

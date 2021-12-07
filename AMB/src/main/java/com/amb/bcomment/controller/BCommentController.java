@@ -32,7 +32,7 @@ public class BCommentController {
 	@GetMapping(value = "/pages/{bno}/{page}",
 				
 				produces = { "application/json; charset=UTF-8", "application/xml; charset=UTF-8"})
-	public ResponseEntity<BCommentPagingCreatorDTO> cntList(@PathVariable("bno") Long bno,
+	public ResponseEntity<BCommentPagingCreatorDTO> cmtList(@PathVariable("bno") Long bno,
 															@PathVariable("page") Integer pageNum){
 		
 		log.info("URI추출 pageNum: " + pageNum);
@@ -41,7 +41,7 @@ public class BCommentController {
 		BCommentPagingDTO bCommentPaging = new BCommentPagingDTO(bno, pageNum);
 		log.info("생성된 BCommentPagingDTO: " + bCommentPaging);
 		
-		BCommentPagingCreatorDTO bCommentPagingCreator = bcommentService.selectCnoListTotalByBno(bCommentPaging);
+		BCommentPagingCreatorDTO bCommentPagingCreator = bcommentService.selectCnoListByBno(bCommentPaging);
   		
 		ResponseEntity<BCommentPagingCreatorDTO> responseEntity =
 				new ResponseEntity<>(bCommentPagingCreator, HttpStatus.OK);

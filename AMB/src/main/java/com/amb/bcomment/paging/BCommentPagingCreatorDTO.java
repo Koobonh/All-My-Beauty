@@ -20,14 +20,14 @@ public class BCommentPagingCreatorDTO {
 	private int pagingNumCnt;
 	private int lastPageNum;
 	
-	private List<BCommentVO> cntList;
+	private List<BCommentVO> cmtList;
 	
 	public BCommentPagingCreatorDTO(long cntTotalByBno,
 								BCommentPagingDTO cntPaging,
-								List<BCommentVO> cntList) {
+								List<BCommentVO> cmtList) {
 		this.cntPaging = cntPaging;
 		this.cntTotalByBno = cntTotalByBno;
-		this.cntList = cntList;
+		this.cmtList = cmtList;
 		this.pagingNumCnt = 10;
 		
 		//계산된 끝-시작 페이징 번호:
@@ -46,12 +46,12 @@ public class BCommentPagingCreatorDTO {
 		this.prev = this.startPagingNum > 1;
 		this.next = this.endPagingNum < lastPageNum;
 		
-		System.out.println(cntPaging.toString());
-		System.out.println(this.endPagingNum);
-		System.out.println(this.startPagingNum);
-		System.out.println(this.prev);
-		System.out.println(this.next);
-		System.out.println(this.cntList);
+		System.out.println("댓글-전달된 페이징 기본데이터-MyReplyPagingDTO: " + cntPaging.toString());
+		 System.out.println("댓글-끝 페이징번호: " + this.endPagingNum);
+		 System.out.println("댓글-시작 페이징번호: " + this.startPagingNum);
+		 System.out.println("댓글-이전버튼 표시 여부: " + this.prev);
+		 System.out.println("댓글-다음버튼 표시 여부: " + this.next);
+		 System.out.println("전달된 댓글 목록 데이터: " + this. cmtList);
 		
 	}
 	

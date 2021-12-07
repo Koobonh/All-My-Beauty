@@ -60,15 +60,15 @@
 				FROM ( SELECT LEVEL lvl, a.*
 					FROM (SELECT /* + INDEX_ASC (a IDX_bcomment) */*
 						FROM Koo.bcomment
-						WHERE bno = #{bcommentPagingDTO.bno}
+						WHERE bno = #{bCommentPagingDTO.bno}
 						)a
 					START WITH creply IS NULL
 					CONNECT BY PRIOR  cno = creply
 					) b
 				)
-		WHERE rn BETWEEN #{bcommentPagingDTO.pageNum} * #{bcommentPagingDTO.rowAmountPerPage}
-						-(#{bcommentPagingDTO.rowAmountPerPage} - 1)
-					AND #{bcommentPagingDTO.pageNum} * #{bcommentPagingDTO.rowAmountPerPage}
+		WHERE rn BETWEEN #{bCommentPagingDTO.pageNum} * #{bCommentPagingDTO.rowAmountPerPage}
+						-(#{bCommentPagingDTO.rowAmountPerPage} - 1)
+					AND #{bCommentPagingDTO.pageNum} * #{bCommentPagingDTO.rowAmountPerPage}
 	]]>
 	</select>
 	
@@ -76,7 +76,7 @@
 	<![CDATA[
 		SELECT /* + INDEX(bcomment IDX_bcomment) */ count(*)
 		FROM Koo.bcomment
-		WHERE bno = #{ bcommentPagingDTO.bno}
+		WHERE bno = #{ bCommentPagingDTO.bno}
 	]]>
 	</select>
 </mapper>
