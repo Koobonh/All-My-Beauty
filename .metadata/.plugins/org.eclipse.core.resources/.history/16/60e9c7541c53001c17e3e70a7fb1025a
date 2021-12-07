@@ -1,0 +1,6 @@
+package com.amb.mypro.mapper;
+
+import com.amb.mypro.domain.QBoardVO;
+public interface QBoardMapper {
+	
+}

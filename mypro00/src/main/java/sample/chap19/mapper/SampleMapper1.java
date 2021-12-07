@@ -1,0 +1,11 @@
+package sample.chap19.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+
+public interface SampleMapper1 {
+	
+	@Insert("insert into tbl_sample1 values (#{data})")
+	public int insertCol1(String data);
+
+}
+	

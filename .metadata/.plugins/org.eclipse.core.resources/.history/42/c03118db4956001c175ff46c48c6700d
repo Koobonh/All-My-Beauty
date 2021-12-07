@@ -1,0 +1,5 @@
+package com.amb.bcomment.mapper;
+
+public interface BoardMapper {
+
+}

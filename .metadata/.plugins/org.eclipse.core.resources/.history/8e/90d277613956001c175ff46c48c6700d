@@ -1,0 +1,38 @@
+package com.amb.amb.bcomment.controller;
+
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration //DispatcherServlet의 구성설정파일을 사용하여 컨트롤러를 테스트하기 위해 필요한 설정
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/mybatis-context.xml",
+ "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
+@Log4j
+public class BCommentControllerTests {
+
+	 //Log4j 롬복 어노테이션을 사용하지 않는 경우, 다음처럼 로그 객체를 직접 호출해야 합니다.
+	 //private static final Logger logger = LoggerFactory.getLogger(MyReplyControllerTests.class);
+	 //테스트 환경 구성
+	 //컨트롤러 테스트를 위해서는 WebApplicationContext를 객체(웹 컨텍스트 객체)로 주입 받아야 합니다.
+	 @Setter(onMethod_ = { @Autowired })
+	 private WebApplicationContext ctx;
+	 
+	 //테스트 객체를 담을 필드
+	 private MockMvc mockMvc;
+	 
+	 //테스트 전에 테스트 객체를 생성하여 테스트 환경 설정
+	 @Before
+	 public void setup() {
+	 this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+	 } //테스트 환경 구성-끝
+	}

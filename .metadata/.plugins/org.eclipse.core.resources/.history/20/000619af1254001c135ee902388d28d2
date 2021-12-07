@@ -1,0 +1,5 @@
+package com.amb.bcomment.service;
+
+public interface BCommentService {
+
+}

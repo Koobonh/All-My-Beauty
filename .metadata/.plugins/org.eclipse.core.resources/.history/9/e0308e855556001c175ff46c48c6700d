@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+	 <mapper namespace="com.amb.bcomment.mapper.BoardMapper">
+	 
+	<select id="selectMyBoardList" resultType="com.amb.bcomment.domain.BoardVO">
+      <![CDATA[
+            SELECT bno, btitle, bcontent, bwriter, bregdate, bmodDate, bviewsCnt, breplyCnt, bdelFlag
+            FROM (SELECT /*+ INDEX_DESC(a PK_MYBIARD) */ ROWNUM rn, a.* 
+                      FROM koo.board a 
+                      WHERE 
+           ]]>
+           <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+                  <foreach item='scope' collection="scopeArray">
+                     <trim prefix="OR">
+                        <choose>
+                           <when test="scope == 'T'.toString()">btitle LIKE '%'||#{keyword}||'%'</when>
+                           <when test="scope == 'C'.toString()">bcontent LIKE '%'||#{keyword}||'%'</when>
+                           <when test="scope == 'W'.toString()">bwriter LIKE '%'||#{keyword}||'%'</when>
+                        </choose>
+                     </trim>
+                  </foreach>
+              </trim>
+              <![CDATA[
+                      ROWNUM <= (#{pageNum} * #{rowAmountPerPage})
+                      )
+                WHERE rn >= (( #{pageNum} * #{rowAmountPerPage}) - (#{rowAmountPerPage} - 1) )
+             ]]>
+       </select>
+       
+       <insert id="regBoard">
+       <![CDATA[
+       	INSERT INTO Koo.board
+       	VALUES (seq_board.nextval, #{btitle}, #{bcontent}, #{bwriter},
+       		DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+       ]]>
+       </insert>
+       
+       <insert id="selectBoard" resultType="com.amb.bcomment.domain.BoardVO">
+       	SElECT * FROM Koo.board
+       	WHERE bno = #{bno}
+       </insert>
+	 </mapper>

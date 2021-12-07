@@ -1,0 +1,14 @@
+package com.amb.mypro.domain;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class BCommentVO {
+	public int cno;
+	public int bno;
+	public long mid;
+	public Date credate;
+	
+}

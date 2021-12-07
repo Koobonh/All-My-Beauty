@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<!-- MapperInterface 사용 -->
+<mapper namespace="com.amb.bcomment.mapper.BCommentMapper">
+	<!-- 게시물에 대한 댓글 등록  -->
+	<select id="showBCommentList" resultType="com.amb.bcomment.domain.BCommentVO">
+		<![CDATA[
+		SELECT cno, bno, mid, cregdate, ccontent, creply, cdelflag, LEVEL AS lvl
+		FROM ( SELECT /* + INDEX_ASC (a IDX_bcomment) */ *
+			   FROM Koo.bcomment
+				   WHERE bno = #{bno} ) a
+		START WITH creply IS NULL
+		CONNECT BY PRIOR cno = creply
+		]]>
+	<!--  -->
+	</select>
+	<select id="selectBComment" resultType="com.amb.bcomment.domain.BCommentVO">
+	<![CDATA[
+		SELECT * FROM Koo.bcomment WHERE bno= #{bno} AND cno = #{cno}
+	]]>
+	</select>
+	
+	<insert id="insertBCommentForBoard">
+		<selectKey keyProperty="cno" order="BEFORE" resultType="long">
+			SELECT Koo.seq_bcomment.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO koo.bcomment(bno, cno, ccontent, mid, cregdate, cdelflag, creply)
+		VALUES (#{bno}, #{cno}, #{ccontent}, #{mid}, DEFAULT, 0, DEFAULT)
+	</insert>
+
+	<insert id="insertBCommentForReply">
+		<selectKey keyProperty="cno" order="BEFORE" resultType="long">
+			SELECT Koo.seq_bcomment.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO koo.bcomment
+		VALUES (#{cno}, #{bno}, #{mid}, DEFAULT, #{ccontent}, #{creply}, 0)
+	</insert>
+	
+	<update id="updateBComment">
+		<![CDATA[
+			UPDATE Koo.bcomment
+			SET ccontent = #{ccontent},
+			WHERE bno= #{bno} AND cno= #{cno}			
+		]]>
+	</update>
+	
+	<delete id="deleteBComment">
+	<![CDATA[
+		DELETE FROM Koo.bcomment WHERE bno= #{bno} AND cno = #{cno}
+	]]>
+	</delete>
+	
+	<select id="selectCnoList" resultType="com.amb.bcomment.domain.BCommentVO">
+	<![CDATA[
+		SELECT cno, bno, mid, cregDate, ccontent, creply, cdelFlag, lvl
+		FROM ( SELECT ROWNUM rn, b.*
+				FROM ( SELECT LEVEL lvl, a.*
+					FROM (SELECT /* + INDEX_ASC (a IDX_bcomment) */*
+						FROM Koo.bcomment
+						WHERE bno = #{BCommentPagingDTO.bno}
+						)a
+					START WITH creply IS NULL
+					CONNECT BY PRIOR  cno = creply
+					) b
+				)
+		WHERE rn BETWEEN #{BCommentPagingDTO.pageNum} * #{BCommentPagingDTO.rowAmountPerPage}
+						-(#{BCommentPagingDTO.rowAmountPerPage} - 1)
+					AND #{BCommentPagingDTO.pageNum} * #{BCommentPagingDTO.rowAmountPerPage}
+	]]>
+	</select>
+	
+	<select id="selectCnoTotalByBno" resultType="int">
+	<![CDATA[
+		SELECT /* + INDEX (bcomment IDX_bcomment) */ count(*)
+		FROM Koo.bcomment
+		WHERE bno = #{ BCommentPagingDTO.bno}
+	]]>
+	</select>
+</mapper>

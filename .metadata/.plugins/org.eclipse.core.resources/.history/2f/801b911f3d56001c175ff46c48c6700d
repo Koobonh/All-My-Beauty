@@ -1,0 +1,5 @@
+
+var myCommentClsr =  function() {
+	
+	//댓글목록(페이징)
+	

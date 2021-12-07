@@ -1,0 +1,13 @@
+package com.amb.bcomment.domain;
+
+import lombok.Data;
+
+@Data
+public class BoardVO {
+	
+	public Long bno;
+	
+	public String mid;
+	
+	public String btitle;
+}

@@ -1,0 +1,8 @@
+package com.amb.bcomment.mapper;
+
+public interface BCommentMapper {
+	
+	//댓글 목록 조회
+	
+	public <BCommentVO> showReplyList(Long cno);
+}

@@ -1,0 +1,18 @@
+package com.amb.bcomment.mapper;
+
+import java.util.List;
+
+import com.amb.bcomment.domain.BCommentVO;
+
+public interface BCommentMapper {
+	
+	public List<BCommentVO> showQBoardList(Long bno);
+	
+	public long insertBCommentForBoard(BCommentVO bcommentVO);
+	
+	public long insertBCommentForReply(BCommentVO bcommentVO);
+	
+	public int updateBComment(BCommentVO bcommentVO);
+	
+	public int deleteBComment(@Param("bno") Long bno, @Param("cno") Long cno);
+}

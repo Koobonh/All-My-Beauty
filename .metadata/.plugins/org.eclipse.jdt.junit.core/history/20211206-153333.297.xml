@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BCommentControllerTests" project="AMB" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.amb.amb.bcomment.controller.BCommentControllerTests" time="0.803">
+    <testcase name="testModifyReply" classname="com.amb.amb.bcomment.controller.BCommentControllerTests" time="0.638"/>
+    <testcase name="testSelectCno" classname="com.amb.amb.bcomment.controller.BCommentControllerTests" time="0.164"/>
+  </testsuite>
+</testrun>

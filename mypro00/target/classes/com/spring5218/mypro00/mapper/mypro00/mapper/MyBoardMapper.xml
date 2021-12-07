@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring5218.mypro00.mapper.MyBoardMapper">
+
+
+<!-- 게시물 조회 - 목록 -->
+<!-- 	<select id = "selectMyBoardList" resultType = "com.spring5218.mypro00.domain.MyBoardVO">
+		SELECT * FROM book_ex.tbl_myboard
+		WHERE bno > 0 
+		ORDER BY bno DESC
+	</select> -->
+	
+	<!-- 게시물 조회 : 목록 Paging, 삭제 요청된 행 제외하려면 INNER SELECT의 WHERE 절에 AND bDelFlag = 0 AND 추가  -->
+	<!-- 페이징 쿼리 할때는 주석 처리가 알 수 없지만 문제가 생김, 그래서 CDATA를 넣어줌 -->
+	
+	<select id = "selectMyBoardList" resultType = "com.spring5218.mypro00.domain.MyBoardVO">
+	<![CDATA[
+		SELECT bno, btitle, bcontent, bwriter, bregdate, bmodDate,
+ 	     bviewsCnt, breplyCnt, bdelFlag
+		 FROM ( SELECT /*+ INDEX_DESC (a pk_myboard) */ ROWNUM rn, a.*
+       		   FROM book_ex.tbl_myboard a
+       		   WHERE
+        ]]> 
+        <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+        	<foreach item='scope' collection="scopeArray">
+        		<trim prefix="OR">
+        			<choose>
+        				<when test="scope == 'T'.toString()">btitle LIKE '%' || #{keyword} || '%'</when>
+        				<when test="scope == 'C'.toString()">bcontent LIKE '%' || #{keyword} || '%'</when>
+        				<when test="scope == 'W'.toString()">bwriter LIKE '%' || #{keyword} || '%'</when>
+        			</choose>
+        		</trim>
+        	</foreach>
+        </trim>
+       <![CDATA[  
+       		    ROWNUM <= ( #{pageNum} * #{rowAmountPerPage} )
+    		 )
+		WHERE rn >= ( ( #{pageNum} * #{rowAmountPerPage} ) - ( #{rowAmountPerPage} - 1 ) )
+	   ]]>
+	</select>
+
+	<select id= "selectRowAmountTotal" resultType="long">
+	 	<!-- SELECT count(*) tatalCnt FROM book_ex.tbl_myboard -->
+	 	<![CDATA[
+	 		SELECT count(*) FROM book_ex.tbl_myboard
+	 	]]>
+	 	<where>
+	 		<trim prefix="(" suffix=")" prefixOverrides="OR">
+	 			<foreach item='scope' collection="scopeArray">
+	 				<trim prefix="OR">
+	 					<choose>
+	 						<when test="scope ==  'T'.toString()">btitle LIKE '%'||#{keyword}||'%'</when>
+	 						<when test="scope ==  'C'.toString()">bcontent LIKE '%'||#{keyword}||'%'</when>  
+	 						<when test="scope ==  'W'.toString()">bwriter LIKE '%'||#{keyword}||'%'</when> 
+	 					</choose>
+	 				</trim>
+	 			</foreach>
+	 		</trim>
+	 	</where>
+	</select>
+
+    <insert id = "insertMyBoard">
+		INSERT INTO book_ex.tbl_myboard
+		VALUES (seq_myboard.nextval, #{btitle}, #{bcontent}, #{bwriter},
+				DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+
+    </insert>
+
+<!-- 게시물 등록 -selectKey 이용 -->
+    <insert id = "insertMyBoardSelectKey">
+        <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			SELECT book_ex.seq_myboard.nextval FROM dual
+        </selectKey>
+        
+		INSERT INTO book_ex.tbl_myboard
+	    VALUES (#{bno}, #{btitle}, #{bcontent}, #{bwriter},
+		    	DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+    </insert>
+	
+<!-- 특정 게시물 조회  -->
+
+    <select id="selectMyBoard"  resultType="com.spring5218.mypro00.domain.MyBoardVO">
+		SELECT * FROM book_ex.tbl_myboard
+		WHERE bno = #{bno}
+    </select>
+
+
+<!-- updateBviewsCnt -->
+    <update id = "updateBviewsCnt">
+        UPDATE book_ex.tbl_myboard
+        SET bviewsCnt =  bviewsCnt + 1
+        WHERE bno = #{bno}
+    </update>
+
+		
+    <update id = "updateMyBoard">
+			UPDATE book_ex.tbl_myboard
+			SET btitle =  #{btitle},
+				bcontent = #{bcontent},
+				bmodDate = DEFAULT
+			WHERE bno = #{bno}
+    </update>
+    
+    
+    <update id = "updateBdelFlag">
+			UPDATE book_ex.tbl_myboard
+			SET bdelFlag =  1
+			WHERE bno = #{bno}
+    </update>
+    
+    <delete id="deletMyBoard">
+        DELETE book_ex.tbl_myboard
+        WHERE bno = #{bno}
+    </delete>
+    
+    
+    <delete id = "deleteAllBoardSetDeleted">
+    	DELETE book_ex.tbl_myboard WHERE bDelFlag = 1
+    </delete>
+    
+	 
+</mapper>

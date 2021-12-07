@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<!-- MapperInterface 사용 -->
+<mapper namespace="com.amb.mypro.mapper.QBoardMapper">
+	<select id="showQBoardList" resultType="com.amb.bcomment.domain.BCommentVO">
+		<![CDATA[
+		SELECT bno, cno, ccontent, mid, cregdate, creply, celflag, LEVEL AS lvl
+		FROM ( SELECT /* + INDEX_ASC (a IDX_bcomment_bno_cno ) */ *
+			   FROM Koo.bcomment
+			   WHERE bno = #{bno} ) a
+		START WITH creply IS NULL
+		CONNECT BY PRIOR cno = creply
+	]]>
+	
+	</select>
+
+
+
+
+</mapper>

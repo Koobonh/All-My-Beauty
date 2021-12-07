@@ -1,0 +1,11 @@
+package com.amb.bcomment.paging;
+
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+public class BCommentPagingCreatorDTO {
+	
+	private BCommentPagingDTO bcommentPagingDTO;
+}

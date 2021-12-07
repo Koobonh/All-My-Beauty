@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- DAO 대신 매퍼인터페이스를 사용하는 경우, namespace 속성에 패키지 이름이 포함된 인터페이스 이름을 설정합니다. -->
+<mapper namespace ="sample.chap04.mapper.TimeMapper">
+	<select id ="getTime" resultType="String">
+		SELECT sysdate FROM dual
+	
+	</select>
+
+  
+</mapper>
+

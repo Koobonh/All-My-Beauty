@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<!-- MapperInterface 사용 -->
+<mapper namespace="com.spring5218.mypro00.mapper.MyBoardAttachFileMapper">
+
+<!-- 첨부파일 추가 사용 -->
+	<insert id="insertAttachFile">
+	<![CDATA[
+		INSERT INTO	book_ex.tbl_myAttachFiles
+		VALUES ( #{uuid}, #{uploadPath}, #{fileName}, #{fileTypes}, #{bno} )
+		
+	]]>
+	</insert>
+
+
+<!-- 특정 게시물의 모든 첨부파일 조회 -->
+<!-- 서버의 첨부파일 기본저장 경로는 리터럴 문자열로 처리 -->
+	<select id ="selectAttachFilesByBno" resultType="com.spring5218.mypro00.domain.MyBoardAttachFileVO">
+	<![CDATA[
+		SELECT uuid, uploadPath, fileName, fileType, bno
+		FROM book_ex.tbl_myAttachFiles
+		WHERE bno = #{bno}
+	]]>
+	</select>
+	
+<!-- 특정 첨부파일 삭제 -->
+	<delete id="deleteAttachFile">
+	<![CDATA[
+		DELETE FROM book_ex.tbl_myAttachFiles WHERE uuid = #{uuid}
+	]]>
+	</delete>
+
+<!-- 특정 게시물의 모든 첨부파일 삭제 -->
+	<delete id = "deleteAttachFilesByBno">
+	<![CDATA[
+		DELETE FROM book_ex.tbl_myAttachFiles WHERE bno = #{bno}
+	]]>
+	</delete>
+
+</mapper>

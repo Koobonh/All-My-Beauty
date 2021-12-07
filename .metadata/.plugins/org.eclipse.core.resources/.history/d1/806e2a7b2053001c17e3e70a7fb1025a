@@ -1,0 +1,27 @@
+package com.amb.mypro.mapper;
+
+import java.util.List;
+
+import com.amb.mypro.domain.QBoardVO;
+
+public interface QBoardMapper {
+	//게시물 목록 조회-목록
+	public List<QBoardVO> showQBoardList();
+	
+	//게시물 등록
+	public Integer insertQBoard(QBoardVO qBoard);
+	
+	//특정 게시물 검색
+	public QBoardVO selectQBoard(Long qno);
+	
+	//게시글 삭제요청
+	public int updateQdelFlag(Long qno);
+	
+	public int deleteQBoard(Long qno);
+	
+	public 
+	
+	//ㅔ시물 조회수 증가
+	public void updateQviewsCnt(Long bno);
+	
+}

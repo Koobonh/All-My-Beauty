@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.amb.mypro.mapper.QBoardMapper">
+
+	<!-- 게시물 목록 조회 -->
+	<select id="showQBoardList" resultType="com.amb.mypro.domain.QBoardVO">
+		SELECT * FROM Koo.Qboard
+		WHERE qno > 0
+		ORDER BY qno DESC
+	</select>
+	<insert id="insertQBoard">
+	<![CDATA[
+		INSERT INTO Koo.Qboard
+		VALUES (sq_qboard.nextVal, #{productId}, #{mid}, #{qcontent}, DEFAULT,
+						DEFAULT,DEFAULT)
+	]]>
+	</insert>
+	<select id="selectQBoard" resultType="com.amb.mypro.domain.QBoardVO">
+		SELECT * FROM Koo.Qboad
+		WHERE qno = #{qno}
+	</select>
+	
+	<update id="updateQBoard">
+		UPDATE Koo.QBoard
+		SET qtitle
+	
+	</update>
+	
+</mapper>

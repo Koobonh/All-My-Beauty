@@ -1,0 +1,14 @@
+/**
+ * 댓글/답글 데이터 처리용 Ajax Closure Module 
+ */
+
+var myCommentClsr = ( function(){
+	
+	function getCmtList(pagingParams, callback, error){
+		
+	}
+	
+	
+	
+	)
+}

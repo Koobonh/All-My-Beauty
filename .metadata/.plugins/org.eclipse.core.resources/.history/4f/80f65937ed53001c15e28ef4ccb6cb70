@@ -1,0 +1,16 @@
+package com.amb.bcomment.domain;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class BCommentVO {
+	public long cno;
+	public int bno;
+	public long mid;
+	public Date cregDate;
+	public String cContent;
+	public int creply;
+	public boolean cdelflag;
+}

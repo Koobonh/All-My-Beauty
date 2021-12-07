@@ -1,0 +1,40 @@
+/**
+ * 댓글/답글 데이터 처리용 Ajax Closure Module 
+ */
+
+var myCommentClsr = ( function(){
+	
+	function getCmtList(pagingParams, callback, error){
+		
+		var bno = pagingParams.bno;
+		var page = pagingParams.page || 1;
+		
+		console.log("getCmtList가 전달받은bno: " + bno);
+		console.log("getCmtList가 전달받은page: " + page);
+		console.log("getCmtList()함수의 ajax 처리 시작........");
+		
+		$.ajax({	type: 'get',
+					url: "AMB/replies/pages/" + bno + "/" + page,
+					dataType: 'json',
+					success : function(bCommentPagingCreator, status, xhr){
+							   if(callback){
+									callback(bCommentPagingCreator);
+							}
+					},
+					
+					error : function(xhr, status, er){
+								if(error){
+									error(er);
+								}
+					}
+				   }
+				);//.ajax END
+				
+	}//getCmtList END
+	
+	return{
+		getCmtList : getCmtList
+	};
+	
+	
+})();

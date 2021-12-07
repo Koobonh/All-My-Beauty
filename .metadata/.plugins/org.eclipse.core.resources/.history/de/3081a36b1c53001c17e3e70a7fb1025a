@@ -1,0 +1,10 @@
+package com.amb.mypro.mapper;
+
+import java.util.List;
+
+import com.amb.mypro.domain.QBoardVO;
+
+public interface QBoardMapper {
+	//게시물 목록 조회-목록
+	public List<QBoardVO> showQBoardList();
+}

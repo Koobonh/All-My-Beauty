@@ -1,0 +1,13 @@
+package com.amb.bcomment.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.amb.bcomment.service.BCommentService;
+
+@Controller
+public class BCommentController {
+	
+	private BCommentService bcommentService;
+	
+	
+}

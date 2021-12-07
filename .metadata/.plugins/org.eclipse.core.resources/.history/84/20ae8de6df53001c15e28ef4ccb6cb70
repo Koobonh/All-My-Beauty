@@ -1,0 +1,12 @@
+package com.amb.bcomment.mapper;
+
+import java.util.List;
+
+import com.amb.bcomment.domain.BCommentVO;
+
+public interface BCommentMapper {
+	
+	public List<BCommentVO> showQBoardList(Long bno);
+	
+	public long insert
+}

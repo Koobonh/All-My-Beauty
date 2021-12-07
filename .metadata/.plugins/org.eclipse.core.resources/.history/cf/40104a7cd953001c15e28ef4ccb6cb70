@@ -1,0 +1,25 @@
+package com.amb.bcomment.mapper;
+
+import java.util.List;
+
+import com.amb.bcomment.domain.BCommentVO;
+
+public interface BCommentMapper {
+	
+	//댓글 목록 조회
+	public List<BCommentVO> showReplyList(Long cno);
+	
+	//댓글 등록
+	public long insertBCommentForBoard(BCommentVO bcommentVO);
+	
+	//답글 등록
+	public long insertBCommentForReply(BCommentVO bcommentVO);
+
+	public int updateMyReply(BCommentVO qcommentVO);
+	
+	
+
+
+
+
+}

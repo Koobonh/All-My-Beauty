@@ -1,0 +1,25 @@
+package com.amb.bcomment.service;
+
+import org.springframework.stereotype.Service;
+
+import com.amb.bcomment.mapper.BCommentMapper;
+import com.amb.bcomment.paging.BCommentPagingDTO;
+
+import lombok.extern.log4j.Log4j;
+
+@Service
+@Log4j
+public class BCommentServiceImpl {
+	
+	private BCommentMapper bcommentMapper;
+	
+	public BCommentServiceImpl(BCommentMapper bcommentMapper) {
+		this.bcommentMapper = bcommentMapper;
+	}
+	
+	@Override
+	public BCommentPagingCreatorDTO selectCnoListTotalByBno(BCommentPagingDTO bcommentPagingDTO) {
+		
+	}
+	
+}

@@ -1,0 +1,28 @@
+package com.amb.bcomment.paging;
+
+import java.util.List;
+
+import com.amb.bcomment.domain.BCommentVO;
+
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+public class BCommentPagingCreatorDTO {
+	
+	private BCommentPagingDTO bcommentPagingDTO;
+	private int startPagingNum;
+	private int endPagingNum;
+	private boolean prev;
+	private boolean next;
+	private long cntTotalByBno;
+	private int pagingNumCnt;
+	private int lastPageNum;
+	
+	private List<BCommentVO> cntList;
+	
+	public CntPagingCreatorDTO(long cntTotalByBno,
+							   )
+	
+}

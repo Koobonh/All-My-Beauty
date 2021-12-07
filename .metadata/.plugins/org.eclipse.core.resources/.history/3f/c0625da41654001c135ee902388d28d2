@@ -1,0 +1,24 @@
+package com.amb.bcomment.service;
+
+import com.amb.bcomment.domain.BCommentVO;
+import com.amb.bcomment.paging.BCommentPagingCreatorDTO;
+import com.amb.bcomment.paging.BCommentPagingDTO;
+
+public interface BCommentService {
+	
+	public BCommentPagingCreatorDTO selectCnoListTotalByBno(BCommentPagingDTO bcommentPaging);
+	
+	public long selectCnoTotalByBno(BCommentPagingDTO bcommentPaging);
+	
+	public long registerCnoForBoard(BCommentVO bcommentVO);
+	
+	public long registerCnoForReply(BCommentVO bcommeBntVO);
+	
+	public BCommentVO selectCno(long bno, long cno);
+	
+	public int modifyCno(BCommentVO bcommeBntVO);
+	
+	public int removeCno(long bno, long cno);
+	
+	
+}

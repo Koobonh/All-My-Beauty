@@ -1,0 +1,9 @@
+package com.amb.mypro.domain;
+
+import lombok.Data;
+
+@Data
+public class QBoardVO {
+	private long qno;
+	private 
+}

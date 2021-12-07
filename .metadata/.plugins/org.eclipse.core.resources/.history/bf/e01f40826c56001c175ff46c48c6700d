@@ -1,0 +1,20 @@
+package com.amb.bcomment.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.Setter;
+
+@Controller
+@RequestMapping("/reply")
+public class replyTestController {
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardService = boardservice;
+
+	@RequestMapping("/test")
+	public String replyAjaxTest() {
+		return "board/replyTest()";	
+	}
+}

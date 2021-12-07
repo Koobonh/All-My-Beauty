@@ -1,0 +1,22 @@
+package com.amb.bcomment.paging;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode
+public class BCommentPagingDTO {
+	
+	private long bno;
+	private Integer  pageNum;
+	private int rowAmountPerPage;
+	
+	public BCommentPagingDTO(long bno, Integer PageNum) {
+		this.bno = bno;
+		
+	}
+}

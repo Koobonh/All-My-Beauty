@@ -1,0 +1,15 @@
+INDEX VERSION 1.131
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\503037493.index
+\mypro00\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\455658927.index
+\mypro00\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\730725165.index
+\AMB\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1408012651.index
+\mypro00\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3988870553.index
+\mypro00\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2293583923.index
+\AMB\src\main\java
+C:\myJavaDev\MySpring5Workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1730762006.index
+\AMB\src\main\java

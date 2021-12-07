@@ -1,0 +1,12 @@
+package com.amb.bcomment.service;
+
+import com.amb.bcomment.paging.BCommentPagingDTO;
+
+public interface BCommentService {
+	
+	public BCommentPagingDTO selectCnoTotalByBno(BCommentPagingDTO bcommentPagingDTO);
+	
+	public long selectCnoTotalByBno(BCommentPagingDTO bcommentPagingDTO);
+	
+	
+}

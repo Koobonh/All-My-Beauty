@@ -1,0 +1,14 @@
+package com.amb.bcomment.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/reply")
+public class replyTestController {
+	
+	@RequestMapping("/test")
+	public String replyAjaxTest() {
+		return replyAjaxTest();
+	}
+}

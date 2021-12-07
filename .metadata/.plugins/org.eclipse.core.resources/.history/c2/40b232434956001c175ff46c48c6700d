@@ -1,0 +1,5 @@
+package com.amb.bcomment.domain;
+
+public class BoardVO {
+
+}

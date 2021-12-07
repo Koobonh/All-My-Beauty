@@ -1,0 +1,6 @@
+package com.amb.bcomment.mapper;
+
+public interface BCommentMapper {
+	
+	public List<BCommentVO> showQBoardList
+}

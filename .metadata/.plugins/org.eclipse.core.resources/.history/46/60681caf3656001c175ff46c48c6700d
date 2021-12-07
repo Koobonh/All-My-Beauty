@@ -1,0 +1,70 @@
+package com.amb.bcomment.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.amb.bcomment.domain.BCommentVO;
+import com.amb.bcomment.paging.BCommentPagingCreatorDTO;
+import com.amb.bcomment.paging.BCommentPagingDTO;
+import com.amb.bcomment.service.BCommentService;
+
+import lombok.extern.log4j.Log4j;
+
+@RequestMapping(value="")
+@Controller
+@Log4j
+public class BCommentController {
+	
+	private BCommentService bcommentService;
+	
+	public BCommentController (BCommentService bcommentService) {
+		this.bcommentService = bcommentService;
+	}
+	
+	@GetMapping(value = "/pages/{bno}/{page}",
+				
+				produces = { "application/json; charset=UTF-8", "application/xml; charset=UTF-8"})
+	public ResponseEntity<BCommentPagingCreatorDTO> cntList(@PathVariable("bno") Long bno,
+															@PathVariable("page") Integer pageNum){
+		
+		log.info("URI추출 pageNum: " + pageNum);
+		log.info("URI 추출 bno: " + bno);
+		
+		BCommentPagingDTO bCommentPaging = new BCommentPagingDTO(bno, pageNum);
+		log.info("생성된 BCommentPagingDTO: " + bCommentPaging);
+		
+		BCommentPagingCreatorDTO bCommentPagingCreator = bcommentService.selectCnoListTotalByBno(bCommentPaging);
+  		
+		ResponseEntity<BCommentPagingCreatorDTO> responseEntity =
+				new ResponseEntity<>(bCommentPagingCreator, HttpStatus.OK);
+		
+		log.info("responseEntity: " + responseEntity);
+		
+		return responseEntity;
+	}
+	
+	@PostMapping(value = "/{bno}/new",
+				 consumes = {"application/json; charset=UTF-8"},
+				 produces = { "text/plain; charset=UTF-8"})
+	public ResponseEntity<String> registerCnoForBoard(@PathVariable("bno") Long bno,
+													  @PathVariable("creply") Long creply,
+													  @RequestBody BCommentVO bcomment){
+		log.info(bno);
+		log.info(bcomment.getBno());
+		log.info(creply);
+		log.info(bcomment.getCreply());
+		
+		
+		
+		return null;
+		
+	}
+	
+	
+}

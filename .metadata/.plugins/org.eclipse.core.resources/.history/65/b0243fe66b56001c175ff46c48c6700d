@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<c:set var="contextPath" value = "${pageContext.request.contextPath} " />
+
+<%@ include file ="../myinclude/myheader.jsp" %>
+
+<style>
+.txtBoxCmt, .txtBoxComment {
+	overflow: hidden; resize: vertical; min-height: 100px; color: black;
+}
+</style>
+
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p style="margin-bottom: 0px; font-size: 16px;">
+					<strong style="padding-top: 2px;">
+						<span>댓글&nbsp;<c:out value="${board.creplyCnt}"/>개</span>
+						
+						
+					</strong>
+				</div>
+		</div></div></div>
